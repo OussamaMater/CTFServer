@@ -1,5 +1,5 @@
 # Dict for all needed messages, challenges, flags etc..
-dict = {
+ctf_dict = {
     "WELCOME": "Welcome to our server!",
     "FLAG": "8550405",
     "LOST": "test",

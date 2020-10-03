@@ -2,26 +2,35 @@
 import threading
 import argparse
 import socket
-import sys
-from vocab import dict, bcolors
+from vocab import ctf_dict, bcolors
 from threading import Thread
 from time import sleep
 
 
 class ClientThread(Thread):
     def __init__(self, client_socket):
+        """[summary]
+        Args:
+            client_socket ([socket]): [holds the client socket]
+        """
         Thread.__init__(self)
         self.client_socket = client_socket
 
     def run(self):
-        self.client_socket.sendall(dict["WELCOME"].encode())
+        self.client_socket.sendall(ctf_dict["WELCOME"].encode())
         self.client_socket.close()
 
 
 class Server():
     def __init__(self, address, port):
+        """[summary]
+        Args:
+            address ([str]): [server's ip]
+            port ([int]): [server's port]
+        """
         self.initConn(address, port)
 
+    @classmethod
     def initConn(self, address, port):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.bind((address, port))
