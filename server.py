@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import threading
 import argparse
 import socket
 from vocab import ctf_dict, bcolors
@@ -10,6 +9,7 @@ from time import sleep
 class ClientThread(Thread):
     def __init__(self, client_socket):
         """[summary]
+
         Args:
             client_socket ([socket]): [holds the client socket]
         """
@@ -24,6 +24,7 @@ class ClientThread(Thread):
 class Server():
     def __init__(self, address, port):
         """[summary]
+
         Args:
             address ([str]): [server's ip]
             port ([int]): [server's port]
