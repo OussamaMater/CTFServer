@@ -55,7 +55,7 @@ class Server():
         try:
             server_socket.bind((address, port))
             server_socket.listen(5)
-        except:
+        except Exception:
             print("Could not bind address to port, use a different port or try again later")
             sys.exit()
         if args.verbose:
