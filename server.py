@@ -3,7 +3,7 @@ import argparse
 import sys
 import socket
 from library import CTFDict, Colors, loadAnimation, ASCII_ART
-from threading import Thread, enumerate
+from threading import Thread
 from time import sleep
 
 
@@ -30,7 +30,7 @@ class ClientThread(Thread):
                     self.client_socket.sendall(CTFDict.WON.encode())
                     self.closeConn()
                     return
-            except:
+            except BrokenPipeError:
                 self.closeConn()
                 return
 
@@ -62,7 +62,6 @@ class Server():
             print(f"{Colors.BOLD}Listening on {address} {port} ...{Colors.ENDC}")
         while True:
             try:
-                # print(enumerate())
                 (client_socket, (ip, port)) = server_socket.accept()
                 print(f"{Colors.OKGREEN}[+] Connection established from {ip} at port {port} {Colors.ENDC}")
                 client_thread = ClientThread(client_socket, ip, port)
