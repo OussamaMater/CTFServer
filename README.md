@@ -41,7 +41,7 @@ chmod +x server.py
 For more details on the usage execute with --help/-h flag;
 
 ```bash
-$ ./server.py -h
+./server.py -h
 ```
 
 _Note: Soon the server will be added as a pip package._
