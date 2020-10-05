@@ -6,8 +6,7 @@ try:
 except ImportError:
     pass
 
-METADR = '0.0.0.0'
-LOCALHOST = '127.0.0.1'
+AllowedAddre = ['localhost', '0.0.0.0']
 
 
 def loadAnimation():

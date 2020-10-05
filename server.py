@@ -2,7 +2,7 @@
 import argparse
 import sys
 import socket
-from library import CTFDict, Colors, loadAnimation, ASCII_ART, METADR, LOCALHOST
+from library import CTFDict, Colors, loadAnimation, ASCII_ART, AllowedAddre
 from threading import Thread
 from time import sleep
 import netifaces as ni
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     group.add_argument('-q', '--quit', action='store_true', help='quiet mode - default')
     group.add_argument('-v', '--verbose', action='store_true', help='verbose mode')
     args = parser.parse_args()
-    if(verifyInter(args.address) or args.address == METADR or LOCALHOST):
+    if(verifyInter(args.address) or (args.address in AllowedAddre)):
         try:
             loadAnimation()
             if args.verbose:
