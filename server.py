@@ -2,9 +2,10 @@
 import argparse
 import sys
 import socket
-from library import CTFDict, Colors, loadAnimation, ASCII_ART
+from library import CTFDict, Colors, loadAnimation, ASCII_ART, METADR, LOCALHOST
 from threading import Thread
 from time import sleep
+import netifaces as ni
 
 
 class ClientThread(Thread):
@@ -76,6 +77,16 @@ class Server():
                 break
 
 
+def verifyInter(ip):
+    interfaces = ni.interfaces()
+    for i in interfaces:
+        # Checking if there's an ip assinged to the interface
+        if len(ni.ifaddresses(i)) > 1:
+            if ip == ni.ifaddresses(i)[2][0]['addr']:
+                return True
+    return False
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # Server settings args
@@ -85,7 +96,13 @@ if __name__ == "__main__":
     group.add_argument('-q', '--quit', action='store_true', help='quiet mode - default')
     group.add_argument('-v', '--verbose', action='store_true', help='verbose mode')
     args = parser.parse_args()
-    loadAnimation()
-    if args.verbose:
-        print(ASCII_ART)
-    server = Server(args.address, args.port)
+    if(verifyInter(args.address) or args.address == METADR or LOCALHOST):
+        try:
+            loadAnimation()
+            if args.verbose:
+                print(ASCII_ART)
+            server = Server(args.address, args.port)
+            sys.exit()
+        except KeyboardInterrupt:
+            sys.exit()
+    print(f"{Colors.FAIL}Error occured. Try using a valid address or check network interfaces. {Colors.ENDC}")

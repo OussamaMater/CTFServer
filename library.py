@@ -6,6 +6,9 @@ try:
 except ImportError:
     pass
 
+METADR = '0.0.0.0'
+LOCALHOST = '127.0.0.1'
+
 
 def loadAnimation():
     # String to be displayed when the application is loading
