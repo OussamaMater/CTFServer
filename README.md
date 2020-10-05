@@ -21,6 +21,7 @@
 ## Installation && Usage
 
 - Requirements: _Python_ 3.x should be fine.
+
   _Note: You might need to install pyfiglet module_
 
 ```bash
