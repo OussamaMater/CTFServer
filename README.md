@@ -23,15 +23,16 @@ Oussama Mater
 
 Requirements: _Python_ 3.x should be fine.
 
-_Note: You might need to install pyfiglet module_
-
 ```bash
 git clone https://github.com/OussamaMater/CTFServer.git
 cd CTFServer
+pip3 install -r requirements.txt
 python3 server.py
 ```
 
-Or u can mark it as an excutable and run it;
+_Note: Flask will be installed, if you have an env set for that please switch to it._
+
+You can mark it as an excutable and run it;
 
 ```bash
 chmod +x server.py
@@ -46,9 +47,21 @@ For more details on the usage execute with --help/-h flag;
 
 _Note: Soon the server will be added as a pip package._
 
+## Update
+
+This server will receive changes, to keep it up-to-date;
+
+```bash
+cd path/to/CTF_SERVER
+git pull origin master
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+    - TODO:
+        - Create a GUI app using Flask (branch: feature).
 
 ## Fun Fact
 
