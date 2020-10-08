@@ -4,5 +4,5 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello'
+def home():
+    return 'This will be the GUI panel'
