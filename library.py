@@ -1,10 +1,8 @@
 import time
 import sys
 import os
-try:
-    from pyfiglet import Figlet
-except ImportError:
-    pass
+from pyfiglet import Figlet
+
 
 AllowedAddre = ['localhost', '0.0.0.0']
 
