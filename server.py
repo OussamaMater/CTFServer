@@ -4,8 +4,10 @@ import sys
 import socket
 from library import CTFDict, Colors, loadAnimation, ASCII_ART, AllowedAddre
 from threading import Thread
+import logging
 from time import sleep
 import netifaces as ni
+from webgui import app
 
 
 class ClientThread(Thread):
@@ -25,7 +27,7 @@ class ClientThread(Thread):
         self.client_socket.sendall(CTFDict.CHALLENGE_1.encode())
         while True:
             try:
-                self.client_socket.sendall(bytes(">>> ", "utf-8"))
+                self.client_socket.sendall(">>> ".encode())
                 answer = self.client_socket.recv(1024).decode().strip()
                 if answer == str(CTFDict.SOLUTION_1):
                     self.client_socket.sendall(CTFDict.WON.encode())
@@ -59,8 +61,8 @@ class Server():
         except Exception:
             print("Could not bind address to port, use a different port or try again later")
             sys.exit()
-        if args.verbose:
-            print(f"{Colors.BOLD}Listening on {address} {port} ...{Colors.ENDC}")
+        print(f"{Colors.HEADER}Consult the GUI panel http://127.0.0.1:5000 ...{Colors.ENDC}")
+        print(f"{Colors.BOLD}TCP server listening on {address} {port} ...{Colors.ENDC}")
         while True:
             try:
                 (client_socket, (ip, port)) = server_socket.accept()
@@ -87,6 +89,15 @@ def verifyInter(ip):
     return False
 
 
+def launchGui():
+    cli = sys.modules['flask.cli']
+    cli.show_server_banner = lambda *x: None
+    app.logger.disabled = True
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
+    app.run()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # Server settings args
@@ -101,6 +112,9 @@ if __name__ == "__main__":
             loadAnimation()
             if args.verbose:
                 print(ASCII_ART)
+            gui_t = Thread(target=launchGui)
+            gui_t.daemon = True
+            gui_t.start()
             server = Server(args.address, args.port)
             sys.exit()
         except KeyboardInterrupt:
