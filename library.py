@@ -56,6 +56,7 @@ class CTFDict:
     LOST = "LOST"
     WON = "Well I guess you win! " + FLAG + "\n"
     CHALLENGE_1 = "Solve it and secure the flag! YmFzZTY0Cg==\n"
+    CHALLENGE_2 = "This is so BASic <GuGDBju-XFDY&f9k$\"qD,4V0@khI_D.-st7WEEdEc\#PdF>7Mu2)@QmCGf+63DhM0G&^/869/H\n"
     SOLUTION_1 = "base64"
     HELP = "Quit to leave"
 
