@@ -1,6 +1,6 @@
 # CTFserver
 
-CTFserver is a multi-threaded _TCP Server_ for all ctf makers.
+CTFserver is a multi-threaded _TCP Server_ for all CTF makers.
 This server will be updated constantly.
 <br />
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9f1b0d2bdc0b43a78ddfacd0e7d7d079)](https://www.codacy.com/gh/OussamaMater/CTFServer/dashboard?utm_source=github.com&utm_medium=referral&utm_content=OussamaMater/CTFServer&utm_campaign=Badge_Grade)
